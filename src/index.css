@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  background-color: black;
+}
+.login_auth_bg {
+  background-image: url('./assets/IN-en-20231009-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+}
+.video-container{
+  background-image: url('./assets/2FoBvF7-avatar-wallpapers.jpg');
+  background-repeat: no-repeat; 
+  background-size:cover;
+}
+
+
