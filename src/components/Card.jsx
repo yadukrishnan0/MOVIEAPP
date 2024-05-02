@@ -5,7 +5,7 @@ import Button from "./Button";
 
 
 function Card({movie}) {
-  console.log('card',movie)
+  
   return (
     <div className="relative h-80 w-64 border-2 border-gray-200 rounded-lg hover:shadow-lg p-2">
       <div className="w-full h-full">

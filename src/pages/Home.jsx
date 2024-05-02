@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { IoIosStar } from "react-icons/io";
 import Card from "../components/Card";
 import Button from "../components/Button";
+import { CgFontSpacing } from "react-icons/cg";
+
 
 function Home() {
   const movies = JSON.parse(localStorage.getItem('movies')) || [];
-
+  console.log(movies)
+  const[movieData,setMovieData] =useState(movies);
+  console.log(movies)
   return (
     <>
       <div className="flex w-full justify-center mt-5 ">
@@ -24,8 +28,30 @@ function Home() {
         </div>
       </div>
       <h1 className="text-white ml-10 mt-10 ">popular Movies</h1>
+      <div className="flex gap-2">
+      <Button content={"MALAYALAM"} onClick={() => {
+    const filterMovie = movies.filter((val) => {
+        return val.language.toLowerCase() === 'malayalam';
+    });
+    setMovieData(filterMovie);
+}} />
+<Button content={"TAMIL"} onClick={() => {
+    const filterMovie = movies.filter((val) => {
+        return val.language.toLowerCase() === 'tamil';
+    });
+    setMovieData(filterMovie);
+}} />
+<Button content={"ENGLISH"} onClick={() => {
+    const filterMovie = movies.filter((val) => {
+        return val.language.toLowerCase() === 'english';
+    });
+    setMovieData(filterMovie);
+}} />
+ 
+      </div>
+  
       <div className=" w-full flex flex-wrap gap-4 m-8 ">
-        {movies.map((val) => (
+        {movieData.map((val) => (
           <Card key={val.id} movie={val} />
         ))}
       </div>
