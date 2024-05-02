@@ -4,6 +4,5 @@ import MovieReducer from './MovieSlice'
 export const store =configureStore({
     reducer:{
         user:UserReducer,
-        movie:MovieReducer
 }
 })
