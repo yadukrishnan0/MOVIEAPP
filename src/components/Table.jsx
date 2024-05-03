@@ -1,6 +1,8 @@
 import React from 'react'
 import {FaTrash,FaEdit } from "react-icons/fa";
 import moviePic from '../assets/manju.webp'
+const movies = JSON.parse(localStorage.getItem('movies')) || [];
+
 function Table() {
   return (
     <table className="min-w-full table-auto">
@@ -11,42 +13,37 @@ function Table() {
               <th className="px-4 py-2">Description</th>
               <th className="px-4 py-2">Cast</th>
               <th className="px-4 py-2">Rating</th>
-              <th className="px-4 py-2">Trailer</th>
+           
               <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
+            { movies.map((val)=>(
+
+            
+            
             
               <tr className="text-center">
-                <td className="border border-gray-800 px-4 py-2">
-                  avatar
+                <td className="border border-gray-800 px-4 py-2 text-white">
+                  {val.Title}
                 </td>
                 <td className="border border-gray-800 px-4 py-2">
                   <img
-                    src={ moviePic}
+                    src={ val.image}
                     alt="Movie Poster"
                     className="h-20 mx-auto"
                   />
                 </td>
-                <td className="border border-gray-800 px-4 py-2">
-                  goooood filim
+                <td className="border border-gray-800 px-4 py-2 text-white">
+                {val.discription}
                 </td>
-                <td className="border border-gray-800 px-4 py-2">
-                  cast
+                <td className="border border-gray-800 px-4 py-2 text-white">
+                  {val.cast}
                 </td>
                 <td className="border border-gray-800 px-4 py-2">
                   rating
                 </td>
-                <td className="border border-gray-800 px-4 py-2">
-                  <video
-                    src=''
-                    alt="Movie Trailer"
-                    className="h-20 mx-auto"
-                    autoPlay
-                    controls
-                    muted
-                  ></video>
-                </td>
+              
                 <td className="border border-gray-800 px-4 py-2">
                   <button
                     className="text-yellow-500 hover:text-yellow-700 mx-2 text-xl"
@@ -62,7 +59,7 @@ function Table() {
                   </button>
                 </td>
               </tr>
-           
+           ))}
           </tbody>
         </table>
   )

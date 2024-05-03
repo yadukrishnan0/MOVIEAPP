@@ -4,13 +4,14 @@ import { IoIosStar } from "react-icons/io";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import { CgFontSpacing } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 
 function Home() {
   const movies = JSON.parse(localStorage.getItem('movies')) || [];
-  console.log(movies)
+
   const[movieData,setMovieData] =useState(movies);
-  console.log(movies)
+
   return (
     <>
       <div className="flex w-full justify-center mt-5 ">
@@ -52,7 +53,10 @@ function Home() {
   
       <div className=" w-full flex flex-wrap gap-4 m-8 ">
         {movieData.map((val) => (
-          <Card key={val.id} movie={val} />
+          <Link to={`/moviedetails/${val.id}`}>
+           <Card key={val.id} movie={val} />
+          </Link>
+         
         ))}
       </div>
     </>

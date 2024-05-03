@@ -23,8 +23,12 @@ export const MovieDataProvider = ({ children }) => {
     setMovies((prevMovies) => [...prevMovies, newMovie]);
   };
 
+  const[searchTerm,setsearchTerm]=useState('');
+  const searchMovies = movies.filter((movies) => movies.Title.toLowerCase().includes(searchTerm.toUpperCase));
+
+
   return (
-    <MovieContext.Provider value={{ addmovie, movies }}>
+    <MovieContext.Provider value={{ addmovie, movies: searchMovies,setsearchTerm }}>
       {children}
     </MovieContext.Provider>
   );

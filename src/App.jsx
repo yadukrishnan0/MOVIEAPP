@@ -9,7 +9,7 @@ import Adminhome from "./pages/Adminhome";
 import Addmovie from "./pages/Addmovie";
 import Adminlayout from "./Layout/Adminlayout";
 import { MovieDataProvider } from "./Redux/Moviecontext";
-
+import MoviewDetails from "./pages/MoviewDetails";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +18,7 @@ function App() {
           <Route path="/signup" element={<LoginContent />} />
           <Route path="/" element={<Userlayout />}>
             <Route path="/home" element={<Home />} />
+            <Route path='/moviedetails/:movieid' element={<MoviewDetails/>}/>
             <Route path="*" element={<NotFoundPage />} />
           </Route>
           <Route path="/" element={<Adminlayout />}>
