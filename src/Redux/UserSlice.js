@@ -19,7 +19,7 @@ const Users = JSON.parse(localStorage.getItem("users")) || [
     role: "admin",
   },
 ];
-console.log(Users)
+
 
 export const userSlice = createSlice({
   name: "users",

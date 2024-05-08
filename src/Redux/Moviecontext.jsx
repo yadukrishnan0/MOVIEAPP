@@ -12,7 +12,6 @@ export const MovieDataProvider = ({ children }) => {
     localStorage.setItem("movies", JSON.stringify(movies));
   }, [movies]);
 
-
   //add movie
   const addmovie = (movie) => {
     const newMovie = {
@@ -22,13 +21,35 @@ export const MovieDataProvider = ({ children }) => {
     };
     setMovies((prevMovies) => [...prevMovies, newMovie]);
   };
+  const editMovies = (movieId, updatedMovieData) => {
+    setMovies((prevMovies) => {
+      return prevMovies.map((movie) => {
+        if (movie.id === movieId) {
+          const reviews = updatedMovieData.reviews || movie.reviews;
+          return { ...movie, ...updatedMovieData, reviews };
+        }
+        return movie;
+      });
+    });
+  };
+  const deleteMovie = (movieId) => {
+    setMovies((prevMovies) =>
+      prevMovies.filter((movie) => movie.id !== movieId)
+    );
+  };
 
-  const[searchTerm,setsearchTerm]=useState('');
-  const searchMovies = movies.filter((movies) => movies.Title.toLowerCase().includes(searchTerm.toUpperCase));
+  //search movie
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
 
 
   return (
-    <MovieContext.Provider value={{ addmovie, movies: searchMovies,setsearchTerm }}>
+    <MovieContext.Provider
+      value={{ addmovie, movies:searchMovies, editMovies, deleteMovie ,searchTerm,setSearchTerm}}
+    >
       {children}
     </MovieContext.Provider>
   );

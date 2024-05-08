@@ -5,12 +5,17 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import { CgFontSpacing } from "react-icons/cg";
 import { Link } from "react-router-dom";
-
+import { useMovies } from "../Redux/Moviecontext";
 
 function Home() {
-  const movies = JSON.parse(localStorage.getItem('movies')) || [];
-
+  const filtermoviess =JSON.parse(localStorage.getItem('movies'))
+  console.log(filtermoviess)
+  const{movies}=useMovies()
   const[movieData,setMovieData] =useState(movies);
+  
+  useEffect(()=>{
+    setMovieData(movies)
+  },[movies])
 
   return (
     <>
@@ -31,19 +36,19 @@ function Home() {
       <h1 className="text-white ml-10 mt-10 ">popular Movies</h1>
       <div className="flex gap-2">
       <Button content={"MALAYALAM"} onClick={() => {
-    const filterMovie = movies.filter((val) => {
+    const filterMovie =  filtermoviess.filter((val) => {
         return val.language.toLowerCase() === 'malayalam';
     });
     setMovieData(filterMovie);
 }} />
 <Button content={"TAMIL"} onClick={() => {
-    const filterMovie = movies.filter((val) => {
+    const filterMovie = filtermoviess.filter((val) => {
         return val.language.toLowerCase() === 'tamil';
     });
     setMovieData(filterMovie);
 }} />
 <Button content={"ENGLISH"} onClick={() => {
-    const filterMovie = movies.filter((val) => {
+    const filterMovie = filtermoviess.filter((val) => {
         return val.language.toLowerCase() === 'english';
     });
     setMovieData(filterMovie);
@@ -53,8 +58,8 @@ function Home() {
   
       <div className=" w-full flex flex-wrap gap-4 m-8 ">
         {movieData.map((val) => (
-          <Link to={`/moviedetails/${val.id}`}>
-           <Card key={val.id} movie={val} />
+          <Link to={`/moviedetails/${val.id}`} key={val.id}>
+           <Card  movie={val} />
           </Link>
          
         ))}

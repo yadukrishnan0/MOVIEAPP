@@ -6,14 +6,15 @@ import { useState, useEffect } from "react";
 import { debounce } from "lodash";
 import { useMovies } from "../Redux/Moviecontext";
 function Header() {
-  const{setsearchTerm }=useMovies();
+  
   const[input,setInput]=useState('');
-  const debounceSearch =debounce(setsearchTerm,300);
+  const{setSearchTerm}=useMovies()
 
-
+  const debouncedserch =debounce(setSearchTerm,300)
   const handlesearch =(event)=>{
-    setInput(event.target.value)
-    debounceSearch(event.target.value)
+    const{value}=event.target
+    setInput(value)
+    debouncedserch(value)
   }
   return (
     <div className="flex w-full justify-around items-center border-b-0 border-gray-50 bg-black">
@@ -23,11 +24,11 @@ function Header() {
       </div>
       <input
         type="text"
-        name=" "
+        name="search"
         className={`px-3 shadow-sm border border-[#d5cfcf15] rounded-md  outline-none w-1/4 h-10 bg-gray-700 text-white`}
         placeholder="search movie"
-        value={input}
-        onChange={handlesearch}
+       onChange={handlesearch}
+       value={input}
       />
       <div className="nav-items flex ">
         <ul className="sm:flex hidden gap-4">

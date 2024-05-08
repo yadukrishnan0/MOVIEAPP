@@ -130,6 +130,7 @@ function SignupComponent({ setSignup }) {
         };
         dispatch(signup(NewUser));
         setSignup(false);
+        
       }
       
     }

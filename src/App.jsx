@@ -10,6 +10,8 @@ import Addmovie from "./pages/Addmovie";
 import Adminlayout from "./Layout/Adminlayout";
 import { MovieDataProvider } from "./Redux/Moviecontext";
 import MoviewDetails from "./pages/MoviewDetails";
+import MovieEdit from "./pages/MovieEdit";
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +26,7 @@ function App() {
           <Route path="/" element={<Adminlayout />}>
             <Route path="/adminhome" element={<Adminhome />} />
             <Route path="/addmovie" element={<Addmovie />} />
+            <Route path="/editmovie/:id" element={<MovieEdit/>} />
           </Route>
         </Routes>
       </MovieDataProvider>
